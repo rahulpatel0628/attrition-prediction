@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AttritionAI — Employee Risk Intelligence</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">AttritionAI</span>
+      </div>
+      <div class="header-meta">
+        <span class="api-status" id="apiStatus">
+          <span class="dot"></span> Connecting...
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <p class="hero-tag">HR Intelligence Platform</p>
+      <h1 class="hero-title">Predict. Retain.<br><span class="accent">Protect your talent.</span></h1>
+      <p class="hero-sub">Enter employee data to instantly calculate attrition probability and get AI-powered retention recommendations.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">87%</span>
+        <span class="stat-label">Model Accuracy</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">35</span>
+        <span class="stat-label">Input Features</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Risk Tiers</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ MAIN LAYOUT ═══════════════════════════ -->
+  <main class="main-layout">
+
+    <!-- LEFT: FORM PANEL -->
+    <aside class="form-panel">
+      <h2 class="panel-title">Employee Profile</h2>
+      <p class="panel-sub">Fill in the fields below. All inputs reflect real HR data points.</p>
+
+      <form id="employeeForm">
+
+        <!-- SECTION: Personal -->
+        <div class="form-section">
+          <div class="section-label">
+            <span class="section-num">01</span>
+            <span>Personal</span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Age</label>
+              <input type="number" name="Age" min="18" max="65" value="32" required />
+            </div>
+            <div class="field">
+              <label>Gender</label>
+              <select name="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Marital Status</label>
+              <select name="MaritalStatus">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Distance from Home (km)</label>
+              <input type="number" name="DistanceFromHome" min="1" max="30" value="15" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Education (1–5)</label>
+              <input type="number" name="Education" min="1" max="5" value="3" required />
+            </div>
+            <div class="field">
+              <label>Education Field</label>
+              <select name="EducationField">
+                <option value="Life Sciences">Life Sciences</option>
+                <option value="Medical">Medical</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Technical Degree">Technical Degree</option>
+                <option value="Human Resources">Human Resources</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Job Info -->
+        <div class="form-section">
+          <div class="section-label">
+            <span class="section-num">02</span>
+            <span>Job Details</span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Department</label>
+              <select name="Department">
+                <option value="Sales">Sales</option>
+                <option value="Research & Development">R&D</option>
+                <option value="Human Resources">HR</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Job Role</label>
+              <select name="JobRole">
+                <option value="Sales Representative">Sales Rep</option>
+                <option value="Sales Executive">Sales Executive</option>
+                <option value="Research Scientist">Research Scientist</option>
+                <option value="Laboratory Technician">Lab Technician</option>
+                <option value="Manufacturing Director">Manufacturing Director</option>
+                <option value="Healthcare Representative">Healthcare Rep</option>
+                <option value="Manager">Manager</option>
+                <option value="Research Director">Research Director</option>
+                <option value="Human Resources">HR Specialist</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Job Level (1–5)</label>
+              <input type="number" name="JobLevel" min="1" max="5" value="2" required />
+            </div>
+            <div class="field">
+              <label>Business Travel</label>
+              <select name="BusinessTravel">
+                <option value="Non-Travel">Non-Travel</option>
+                <option value="Travel_Rarely">Travel Rarely</option>
+                <option value="Travel_Frequently" selected>Travel Frequently</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Overtime</label>
+              <select name="OverTime">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Stock Option Level (0–3)</label>
+              <input type="number" name="StockOptionLevel" min="0" max="3" value="0" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Compensation -->
+        <div class="form-section">
+          <div class="section-label">
+            <span class="section-num">03</span>
+            <span>Compensation</span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Monthly Income ($)</label>
+              <input type="number" name="MonthlyIncome" min="1000" max="20000" value="3500" required />
+            </div>
+            <div class="field">
+              <label>Daily Rate</label>
+              <input type="number" name="DailyRate" min="100" max="1500" value="800" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Hourly Rate</label>
+              <input type="number" name="HourlyRate" min="30" max="100" value="65" required />
+            </div>
+            <div class="field">
+              <label>Monthly Rate</label>
+              <input type="number" name="MonthlyRate" min="2000" max="27000" value="14000" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full">
+              <label>% Salary Hike (10–25)</label>
+              <input type="number" name="PercentSalaryHike" min="10" max="25" value="11" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Satisfaction -->
+        <div class="form-section">
+          <div class="section-label">
+            <span class="section-num">04</span>
+            <span>Satisfaction Metrics <em>(1=Low, 4=High)</em></span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Job Satisfaction</label>
+              <input type="number" name="JobSatisfaction" min="1" max="4" value="2" required />
+            </div>
+            <div class="field">
+              <label>Environment Satisfaction</label>
+              <input type="number" name="EnvironmentSatisfaction" min="1" max="4" value="2" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Relationship Satisfaction</label>
+              <input type="number" name="RelationshipSatisfaction" min="1" max="4" value="2" required />
+            </div>
+            <div class="field">
+              <label>Work-Life Balance</label>
+              <input type="number" name="WorkLifeBalance" min="1" max="4" value="2" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Job Involvement</label>
+              <input type="number" name="JobInvolvement" min="1" max="4" value="2" required />
+            </div>
+            <div class="field">
+              <label>Performance Rating (3–4)</label>
+              <input type="number" name="PerformanceRating" min="3" max="4" value="3" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Career History -->
+        <div class="form-section">
+          <div class="section-label">
+            <span class="section-num">05</span>
+            <span>Career History</span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Total Working Years</label>
+              <input type="number" name="TotalWorkingYears" min="0" max="40" value="8" required />
+            </div>
+            <div class="field">
+              <label>Years at Company</label>
+              <input type="number" name="YearsAtCompany" min="0" max="40" value="3" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Years in Current Role</label>
+              <input type="number" name="YearsInCurrentRole" min="0" max="18" value="2" required />
+            </div>
+            <div class="field">
+              <label>Yrs Since Last Promotion</label>
+              <input type="number" name="YearsSinceLastPromotion" min="0" max="15" value="2" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Years with Current Manager</label>
+              <input type="number" name="YearsWithCurrManager" min="0" max="17" value="1" required />
+            </div>
+            <div class="field">
+              <label>Num Companies Worked</label>
+              <input type="number" name="NumCompaniesWorked" min="0" max="10" value="3" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full">
+              <label>Training Times Last Year</label>
+              <input type="number" name="TrainingTimesLastYear" min="0" max="6" value="2" required />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="predict-btn" id="predictBtn">
+          <span class="btn-icon">⬡</span>
+          <span class="btn-text">Analyze Attrition Risk</span>
+        </button>
+
+      </form>
+    </aside>
+
+    <!-- RIGHT: RESULTS PANEL -->
+    <section class="results-panel">
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">◈</div>
+        <p>Submit an employee profile to see the risk analysis</p>
+      </div>
+
+      <!-- Results (hidden until predict) -->
+      <div class="results-content hidden" id="resultsContent">
+
+        <!-- Risk Gauge Card -->
+        <div class="result-card risk-card" id="riskCard">
+          <div class="risk-header">
+            <div>
+              <p class="result-label">Attrition Risk Level</p>
+              <h2 class="risk-level" id="riskLevel">—</h2>
+            </div>
+            <div class="risk-badge" id="riskBadge">?</div>
+          </div>
+
+          <div class="gauge-container">
+            <canvas id="gaugeChart" width="260" height="140"></canvas>
+            <div class="gauge-center">
+              <span class="prob-value" id="probValue">—</span>
+              <span class="prob-label">Probability</span>
+            </div>
+          </div>
+
+          <div class="risk-bar-track">
+            <div class="risk-bar-fill" id="riskBarFill"></div>
+          </div>
+          <div class="risk-bar-labels">
+            <span>Low</span><span>Medium</span><span>High</span>
+          </div>
+        </div>
+
+        <!-- Verdict Card -->
+        <div class="result-card verdict-card" id="verdictCard">
+          <p class="result-label">Prediction</p>
+          <div class="verdict-row">
+            <span class="verdict-icon" id="verdictIcon">?</span>
+            <div>
+              <h3 class="verdict-text" id="verdictText">—</h3>
+              <p class="verdict-sub" id="verdictSub">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radar Chart Card -->
+        <div class="result-card chart-card">
+          <p class="result-label">Satisfaction Breakdown</p>
+          <canvas id="radarChart" height="200"></canvas>
+        </div>
+
+        <!-- Actions Card -->
+        <div class="result-card actions-card">
+          <p class="result-label">⚡ Recommended Actions</p>
+          <ul class="actions-list" id="actionsList"></ul>
+        </div>
+
+        <!-- Feature Summary -->
+        <div class="result-card summary-card">
+          <p class="result-label">Key Risk Signals</p>
+          <div class="signals-grid" id="signalsGrid"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <p>AttritionAI · Powered by XGBoost + FastAPI · IBM HR Dataset · Built with ❤️</p>
+  </footer>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="loading-inner">
+      <div class="spinner"></div>
+      <p>Analyzing employee profile...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
