@@ -110,7 +110,7 @@ docker-compose up --build
 ---
 
 ## 📦 Tech Stack
-- **ML**: Scikit-learn, XGBoost, LightGBM, SHAP, Optuna
+- **ML**: Scikit-learn, XGBoost, LightGBM, Ensemble technic,GreadSearchCV
 - **Backend**: FastAPI, Uvicorn, Pydantic
 - **Deployment**: Docker, Docker Compose
 - **Frontend**: HTML5, CSS3, Vanilla JS, Chart.js
